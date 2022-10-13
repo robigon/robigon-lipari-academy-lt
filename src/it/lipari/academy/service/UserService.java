@@ -4,11 +4,6 @@ import java.util.List;
 
 import it.lipari.academy.model.dto.UserDto;
 
-/**
- * 
- * @author robgion
- *
- */
 public interface UserService {
 
 	List<UserDto> findAll() throws Exception;

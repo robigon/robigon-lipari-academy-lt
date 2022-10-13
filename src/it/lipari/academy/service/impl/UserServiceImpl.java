@@ -9,11 +9,6 @@ import it.lipari.academy.pattern.utils.UserUtils;
 import it.lipari.academy.repository.UserRepository;
 import it.lipari.academy.service.UserService;
 
-/**
- * 
- * @author robgion
- *
- */
 public class UserServiceImpl implements UserService {
 
 	
