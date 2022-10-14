@@ -54,4 +54,23 @@ public class UserController {
 		}
 		return response;
 	}
+
+	public BaseResponse<UserDto> logicalDelete(Integer id, boolean active){
+
+		BaseResponse<UserDto> response = new BaseResponse<>();
+
+		try {
+			UserDto dto = userService.logicDelete(id, active);
+			response.setOkStatus(true);
+			response.setBody(dto);
+
+		} catch (Exception e) {
+			e.printStackTrace();
+
+			response.setOkStatus(false);
+			response.setBody(null);
+			response.addError(e.getMessage());
+		}
+		return response;
+	}
 }

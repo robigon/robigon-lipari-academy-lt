@@ -42,4 +42,13 @@ public class UserServiceImpl implements UserService {
 		return response;
 		
 	}
+
+	@Override
+	public UserDto logicDelete(Integer id, boolean active) throws Exception {
+
+		User user = userRepository.logicDelete(id, active);
+		UserDto response = UserUtils.fromVoToDto(user);
+
+		return response;
+	}
 }

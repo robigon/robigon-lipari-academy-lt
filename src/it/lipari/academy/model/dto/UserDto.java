@@ -10,6 +10,8 @@ public class UserDto {
 	private String email;
 	private String password;
 
+	private boolean active;
+
 	
 	public UserDto() {
 		
@@ -71,9 +73,25 @@ public class UserDto {
 		this.password = password;
 	}
 
+	public boolean isActive() {
+		return active;
+	}
+
+	public void setActive(boolean active) {
+		this.active = active;
+	}
+
 	@Override
 	public String toString() {
-		return "UserDto [id=" + id + ", name=" + name + ", lastName=" + lastName + ", cf=" + cf + ", username="
-				+ username + ", email=" + email + ", password=" + password + "]";
+		return "UserDto{" +
+				"id=" + id +
+				", name='" + name + '\'' +
+				", lastName='" + lastName + '\'' +
+				", cf='" + cf + '\'' +
+				", username='" + username + '\'' +
+				", email='" + email + '\'' +
+				", password='" + password + '\'' +
+				", active=" + active +
+				'}';
 	}
 }
