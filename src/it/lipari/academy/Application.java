@@ -15,18 +15,17 @@ public class Application {
 		try {
 			
 			UserController uC = new UserController(new UserServiceImpl(new UserRepository()));
-			BaseResponse<List<UserDto>> response = uC.findAll();
+			BaseResponse<List<UserDto>> response = uC.filtra();
 			
 			if(response.isOkStatus()) {
 				List<UserDto> users = response.getBody();
-				System.out.println("Stampa degli utenti in corso...");
+				System.out.println("Utenti filtrati: ");
 				users.stream().forEach(u -> System.out.println(u));
 			} else {
 				
 			}
 			
-			BaseResponse<UserDto> userResponse = uC.updateFiscalCode(1, "LòSJNDFòSDNFJK");
-			UserDto user = userResponse.getBody();
+			
 			
 			
 		} catch (Exception e) {

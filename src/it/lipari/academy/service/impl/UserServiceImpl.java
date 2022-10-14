@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import it.lipari.academy.model.dto.UserDto;
+import it.lipari.academy.model.vo.FiltraUtenti;
 import it.lipari.academy.model.vo.User;
 import it.lipari.academy.pattern.utils.UserUtils;
 import it.lipari.academy.repository.UserRepository;
@@ -20,10 +21,10 @@ public class UserServiceImpl implements UserService {
 
 
 	@Override
-	public List<UserDto> findAll() throws Exception{
+	public List<UserDto> filtra() throws Exception{
 		
 		List<UserDto> dtoList = new ArrayList<>();
-		List<User> response = userRepository.findAll();
+		List<FiltraUtenti> response = userRepository.filtra();
 		
 		response.stream().forEach(
 				  u -> {
@@ -32,8 +33,15 @@ public class UserServiceImpl implements UserService {
 				);
 		return dtoList;
 	}
-	
+
+
 	@Override
+	public UserDto updateFiscalCode(Integer userId, String cf) throws Exception {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	
+	/*@Override
 	public UserDto updateFiscalCode(Integer userId, String cf) throws Exception {
 		
 		User u = userRepository.updateFiscalCode(userId, cf);
@@ -41,5 +49,5 @@ public class UserServiceImpl implements UserService {
 		
 		return response;
 		
-	}
+	}*/
 }

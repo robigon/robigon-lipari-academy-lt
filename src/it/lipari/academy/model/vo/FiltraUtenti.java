@@ -1,29 +1,23 @@
 package it.lipari.academy.model.vo;
 
-public class User {
-
-	private Integer id;
+public class FiltraUtenti {
+	
 	private String name;
 	private String lastName;
-	private String cf;
 	private String username;
 	private String email;
-	private String password;
 
 	
-	public User() {
+	public FiltraUtenti() {
 	}
 
-	public User(Integer id, String name, String lastName, String cf, String username, String email, String password) {
-		this.id = id;
+	public FiltraUtenti(String name,String lastName, String username, String email ) {
 		this.name = name;
 		this.lastName = lastName;
-		this.cf = cf;
 		this.username = username;
 		this.email = email;
-		this.password = password;
-	}
-	
+}
+
 	public String getName() {
 		return name;
 	}
@@ -32,28 +26,12 @@ public class User {
 		this.name = name;
 	}
 
-	public Integer getId() {
-		return id;
-	}
-
-	public void setId(Integer id) {
-		this.id = id;
-	}
-
 	public String getLastName() {
 		return lastName;
 	}
 
 	public void setLastName(String lastName) {
 		this.lastName = lastName;
-	}
-
-	public String getCf() {
-		return cf;
-	}
-
-	public void setCf(String cf) {
-		this.cf = cf;
 	}
 
 	public String getUsername() {
@@ -72,11 +50,19 @@ public class User {
 		this.email = email;
 	}
 
-	public String getPassword() {
-		return password;
+	public Integer getId() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
-	public void setPassword(String password) {
-		this.password = password;
+	public String getCf() {
+		// TODO Auto-generated method stub
+		return null;
 	}
+
+	public String getPassword() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	
 }
