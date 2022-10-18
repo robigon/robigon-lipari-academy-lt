@@ -8,17 +8,31 @@ public class UserUtils {
 
 	private UserUtils() {}
 	
-	public static UserDto fromVoToDto(FiltraUtenti f) {
+	public static UserDto fromVoToDto(User u) {
 		UserDto retUser = new UserDto();
-		retUser.setId(f.getId());
-		retUser.setName(f.getName());
-		retUser.setLastName(f.getLastName());
-		retUser.setCf(f.getCf());
-		retUser.setEmail(f.getEmail());
-		retUser.setPassword(f.getPassword());
-		retUser.setUsername(f.getUsername());
+		retUser.setId(u.getId());
+		retUser.setName(u.getName());
+		retUser.setLastName(u.getLastName());
+		retUser.setCf(u.getCf());
+		retUser.setEmail(u.getEmail());
+		retUser.setPassword(u.getPassword());
+		retUser.setUsername(u.getUsername());
 		return retUser;
 	}
+
+		
+		public static UserDto fromVoToDto(FiltraUtenti t) {
+			UserDto retUser = new UserDto();
+			retUser.setId(t.getId());
+			retUser.setName(t.getName());
+			retUser.setLastName(t.getLastName());
+			retUser.setCf(t.getCf());
+			retUser.setEmail(t.getEmail());
+			retUser.setPassword(t.getPassword());
+			retUser.setUsername(t.getUsername());
+			return retUser;
+
+}
 
 	
 }

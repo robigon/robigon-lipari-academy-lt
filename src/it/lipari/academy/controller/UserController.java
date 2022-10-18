@@ -14,29 +14,6 @@ public class UserController {
 		this.userService=userService;
 	}
 	
-	public BaseResponse <List<UserDto>> filtra(){
-		List<UserDto> result = null;
-		BaseResponse<List<UserDto>> response = new BaseResponse<>();
-		try {
-			result = userService.filtra();
-			
-			response.setOkStatus(true);
-			response.setBody(result);
-			
-		} catch (Exception e) {
-			
-			e.printStackTrace();
-			
-			response.setOkStatus(false);
-			response.setBody(null);
-			response.addError(e.getMessage());
-		}
-		
-		return response;
-		
-	}
-	
-	/*
 	public BaseResponse<List<UserDto>> findAll() {
 		
 		List<UserDto> result = null;
@@ -57,7 +34,32 @@ public class UserController {
 		}
 		
 		return response;
-	}*/
+	}
+	
+public BaseResponse<List<UserDto>> filtra() {
+		
+		List<UserDto> result = null;
+		BaseResponse<List<UserDto>> response = new BaseResponse<>();
+		try {
+			result = userService.filtra();
+			
+			response.setOkStatus(true);
+			response.setBody(result);
+			
+		} catch (Exception e) {
+			
+			e.printStackTrace();
+			
+			response.setOkStatus(false);
+			response.setBody(null);
+			response.addError(e.getMessage());
+		}
+		
+		return response;
+	}
+
+
+	
 	
 	public BaseResponse<UserDto> updateFiscalCode(Integer userId, String cf) {
 		

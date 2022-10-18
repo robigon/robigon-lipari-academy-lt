@@ -61,7 +61,7 @@ public class UserRepository {
 	}
 	
 	
-}
+
 	
 	
 	
@@ -70,12 +70,10 @@ public class UserRepository {
 	
 	
 	
-	/*public List<User> findAll() throws DataException
+	public List<User> findAll() throws DataException
 	
 	{
-
 		List<User> users = new ArrayList<User>();
-
 		
 		Connection conn = null;
 		try {
@@ -106,15 +104,13 @@ public class UserRepository {
 			}
 		}
 		return users;
-	}*/
+	}
 
-	/*public User updateFiscalCode(final Integer id, final String cf) throws Exception {
-
+	public User updateFiscalCode(final Integer id, final String cf) throws Exception {
 		User u = null;
 		Connection conn = null;
 		try {
 			conn = LipariMysqlDatabaseManager.getInstance().openMysqlConnection();
-
 			// Autocommit disattivato equivale ad aprire una transazione
 			conn.setAutoCommit(false);
 			
@@ -122,27 +118,22 @@ public class UserRepository {
 			PreparedStatement pstmt = conn.prepareStatement("update user set cf = ? where id_user = ? ");
 			pstmt.setString(1, cf);
 			pstmt.setInt(2, id);
-
 			int affectedRows = pstmt.executeUpdate();
 			if (affectedRows == 1) {
 				// 2. Recupero dell'utente
 				pstmt = conn.prepareStatement(
 						"select id_user as id, username, password, name, last_name, email, cf from user where id_user = ? ");
 				pstmt.setInt(1, id);
-
 				ResultSet rs = pstmt.executeQuery();
 				if (rs.next()) {
 					u = new User(rs.getInt("id"), rs.getString("name"), rs.getString("last_name"), rs.getString("cf"),
 							rs.getString("username"), rs.getString("email"), rs.getString("password"));
-
 				} else {
 					throw new Exception("Utente non trovato con id: " + id);
 				}
-
 			} else {
 				throw new Exception("Utente non trovato con id: " + id);
 			}
-
 			// Chiudere la transazione
 			conn.commit();
 			
@@ -157,5 +148,4 @@ public class UserRepository {
 			}
 		}
 		return u;
-	}*/
-
+	}}

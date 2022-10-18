@@ -27,6 +27,20 @@ public class UserServiceImpl implements UserService {
 		List<FiltraUtenti> response = userRepository.filtra();
 		
 		response.stream().forEach(
+				  t -> {
+					  dtoList.add( UserUtils.fromVoToDto(t));
+				  }
+				);
+		return dtoList;
+	}
+
+
+	@Override
+	public List<UserDto> findAll() throws Exception {
+		List<UserDto> dtoList = new ArrayList<>();
+		List<User> response = userRepository.findAll();
+		
+		response.stream().forEach(
 				  u -> {
 					  dtoList.add( UserUtils.fromVoToDto(u));
 				  }
@@ -35,13 +49,11 @@ public class UserServiceImpl implements UserService {
 	}
 
 
-	@Override
-	public UserDto updateFiscalCode(Integer userId, String cf) throws Exception {
-		// TODO Auto-generated method stub
-		return null;
-	}
 	
-	/*@Override
+	
+		
+	
+	@Override
 	public UserDto updateFiscalCode(Integer userId, String cf) throws Exception {
 		
 		User u = userRepository.updateFiscalCode(userId, cf);
@@ -49,5 +61,5 @@ public class UserServiceImpl implements UserService {
 		
 		return response;
 		
-	}*/
+	}
 }
