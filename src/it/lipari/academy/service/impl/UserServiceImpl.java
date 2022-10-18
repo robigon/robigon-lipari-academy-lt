@@ -3,6 +3,7 @@ package it.lipari.academy.service.impl;
 import java.util.ArrayList;
 import java.util.List;
 
+import it.lipari.academy.exception.DataException;
 import it.lipari.academy.model.dto.UserDto;
 import it.lipari.academy.model.vo.User;
 import it.lipari.academy.pattern.utils.UserUtils;
@@ -41,5 +42,15 @@ public class UserServiceImpl implements UserService {
 		
 		return response;
 		
+	}
+
+	@Override
+	public UserDto logicDelete(Integer id) throws DataException {
+
+		User user = userRepository.logicDelete(id);
+
+		UserDto response = UserUtils.fromVoToDto(user);
+
+		return response;
 	}
 }

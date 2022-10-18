@@ -16,6 +16,7 @@ public class UserUtils {
 		retUser.setEmail(user.getEmail());
 		retUser.setPassword(user.getPassword());
 		retUser.setUsername(user.getUsername());
+		retUser.setActive(user.getActive());
 		return retUser;
 	}
 
