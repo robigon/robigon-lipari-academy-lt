@@ -9,14 +9,13 @@ public class User {
 	private String username;
 	private String email;
 	private String password;
-
-	private boolean active;
+	private int active;
 
 	
 	public User() {
 	}
 
-	public User(Integer id, String name, String lastName, String cf, String username, String email, String password, boolean active) {
+	public User(Integer id, String name, String lastName, String cf, String username, String email, String password, int active) {
 		this.id = id;
 		this.name = name;
 		this.lastName = lastName;
@@ -83,11 +82,11 @@ public class User {
 		this.password = password;
 	}
 
-	public boolean isActive() {
+	public int getActive() {
 		return active;
 	}
 
-	public void setActive(boolean active) {
+	public void setActive(int active) {
 		this.active = active;
 	}
 }

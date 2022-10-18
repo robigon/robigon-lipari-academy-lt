@@ -9,45 +9,45 @@ import it.lipari.academy.service.UserService;
 public class UserController {
 
 	private UserService userService;
-	
+
 	public UserController(UserService userService) {
 		this.userService=userService;
 	}
-	
+
 	public BaseResponse<List<UserDto>> findAll() {
-		
+
 		List<UserDto> result = null;
 		BaseResponse<List<UserDto>> response = new BaseResponse<>();
 		try {
 			result = userService.findAll();
-			
+
 			response.setOkStatus(true);
 			response.setBody(result);
-			
+
 		} catch (Exception e) {
-			
+
 			e.printStackTrace();
-			
+
 			response.setOkStatus(false);
 			response.setBody(null);
 			response.addError(e.getMessage());
 		}
-		
+
 		return response;
 	}
-	
+
 	public BaseResponse<UserDto> updateFiscalCode(Integer userId, String cf) {
-		
+
 		BaseResponse<UserDto> response = new BaseResponse<>();
-		
+
 		try {
 			UserDto dto = userService.updateFiscalCode(userId, cf);
 			response.setOkStatus(true);
 			response.setBody(dto);
-			
+
 		} catch (Exception e) {
 			e.printStackTrace();
-			
+
 			response.setOkStatus(false);
 			response.setBody(null);
 			response.addError(e.getMessage());
@@ -55,12 +55,12 @@ public class UserController {
 		return response;
 	}
 
-	public BaseResponse<UserDto> logicalDelete(Integer id, boolean active){
+	public BaseResponse<UserDto> logicalDelete(Integer id){
 
 		BaseResponse<UserDto> response = new BaseResponse<>();
 
 		try {
-			UserDto dto = userService.logicDelete(id, active);
+			UserDto dto = userService.logicDelete(id);
 			response.setOkStatus(true);
 			response.setBody(dto);
 
