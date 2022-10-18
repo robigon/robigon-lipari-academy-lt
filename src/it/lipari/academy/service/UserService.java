@@ -11,5 +11,5 @@ public interface UserService {
 
 	UserDto updateFiscalCode(Integer userId, String cf) throws Exception;
 
-	UserDto logicDelete(Integer id) throws DataException;
+	void logicDelete(Integer id) throws Exception;
 }

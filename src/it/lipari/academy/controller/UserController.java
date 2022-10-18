@@ -55,14 +55,13 @@ public class UserController {
 		return response;
 	}
 
-	public BaseResponse<UserDto> logicalDelete(Integer id){
+	public BaseResponse<Void> logicalDelete(Integer id){
 
-		BaseResponse<UserDto> response = new BaseResponse<>();
+		BaseResponse<Void> response = new BaseResponse<>();
 
 		try {
-			UserDto dto = userService.logicDelete(id);
+			userService.logicDelete(id);
 			response.setOkStatus(true);
-			response.setBody(dto);
 
 		} catch (Exception e) {
 			e.printStackTrace();
