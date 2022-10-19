@@ -19,16 +19,13 @@ public class BaseResponse<T> {
 		this.errors = new ArrayList<>();
 	}
 
-
 	public boolean isOkStatus() {
 		return isOkStatus;
 	}
 
-
 	public void setOkStatus(boolean isOkStatus) {
 		this.isOkStatus = isOkStatus;
 	}
-
 
 	public List<String> getErrors() {
 		return errors;
@@ -42,14 +39,11 @@ public class BaseResponse<T> {
 		this.errors.addAll(errors);
 	}
 
-
 	public T getBody() {
 		return body;
 	}
 
-
 	public void setBody(T body) {
 		this.body = body;
 	}
-	
 }

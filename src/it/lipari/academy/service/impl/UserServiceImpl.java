@@ -3,6 +3,7 @@ package it.lipari.academy.service.impl;
 import java.util.ArrayList;
 import java.util.List;
 
+import it.lipari.academy.exception.DataException;
 import it.lipari.academy.model.dto.UserDto;
 import it.lipari.academy.model.vo.User;
 import it.lipari.academy.pattern.utils.UserUtils;
@@ -18,8 +19,8 @@ public class UserServiceImpl implements UserService {
 		this.userRepository = userRepository;
 	}
 
-	public void createUser(String name, String lastName, String cf, String username, String email, String password) throws Exception{
-		userRepository.createUser(name, lastName, cf, username, email, password);
+	public void createUser(String name, String lastName, String cf, String username, String email, String password, int active) throws Exception{
+		userRepository.createUser(name, lastName, cf, username, email, password, active);
 	}
 
 	@Override
@@ -44,5 +45,11 @@ public class UserServiceImpl implements UserService {
 		
 		return response;
 		
+	}
+
+	@Override
+	public void logicDelete(Integer id) throws Exception {
+
+		userRepository.logicDelete(id);
 	}
 }

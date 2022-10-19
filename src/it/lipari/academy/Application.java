@@ -13,11 +13,12 @@ public class Application {
 	public static void main(String[] args) {
 
 		try {
-			
+
 			UserController uC = new UserController(new UserServiceImpl(new UserRepository()));
+
 			BaseResponse<List<UserDto>> response = uC.findAll();
-			
-			BaseResponse<UserDto> userDtoBaseResponse = uC.createUser("Alessandro", "Canulli", "codiceFiscale", "CanAle97", "canale97.dev@gmail.com", "password");
+
+			BaseResponse<UserDto> userDtoBaseResponse = uC.createUser("Alessandro", "Canulli", "codiceFiscale", "CanAle97", "canale97.dev@gmail.com", "password", 0);
 
 			List<UserDto> users = response.getBody();
 			System.out.println("Stampa degli utenti in corso...");
@@ -26,6 +27,7 @@ public class Application {
 			/*BaseResponse<UserDto> userResponse = uC.updateFiscalCode(1, "LòSJNDFòSDNFJK");
 			UserDto user = userResponse.getBody();*/
 
+			BaseResponse<Void> logicalDeleteResponse = uC.logicalDelete(10);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

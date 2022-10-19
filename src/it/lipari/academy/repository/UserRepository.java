@@ -16,7 +16,7 @@ import it.lipari.academy.model.vo.User;
 
 public class UserRepository {
 
-	public void createUser(String name, String lastName, String cf, String username, String email, String password, String active) throws Exception {
+	public void createUser(String name, String lastName, String cf, String username, String email, String password, int active) throws Exception {
 		Connection conn = null;
 
 		try {
@@ -31,7 +31,7 @@ public class UserRepository {
 			pstmt.setString(4, username);
 			pstmt.setString(5, email);
 			pstmt.setString(6, password);
-			pstmt.setString(6, active);
+			pstmt.setInt(7, active);
 
 			int affectedRows = pstmt.executeUpdate();
 			if (affectedRows != 1) {
@@ -69,10 +69,10 @@ public class UserRepository {
 			conn = LipariMysqlDatabaseManager.getInstance().openMysqlConnection();
 			Statement stmt = conn.createStatement();
 			ResultSet rs = stmt
-					.executeQuery("select id_user as id, username, password, name, last_name, email, cf from user ");
+					.executeQuery("select id_user as id, username, password, name, last_name, email, cf, active from user ");
 			while (rs.next()) {
 				users.add(new User(rs.getInt("id"), rs.getString("name"), rs.getString("last_name"), rs.getString("cf"),
-						rs.getString("username"), rs.getString("email"), rs.getString("password")));
+						rs.getString("username"), rs.getString("email"), rs.getString("password"), rs.getInt("active")));
 			}
 			
 		} catch (SQLException e) {
@@ -113,13 +113,13 @@ public class UserRepository {
 			if (affectedRows == 1) {
 				// 2. Recupero dell'utente
 				pstmt = conn.prepareStatement(
-						"select id_user as id, username, password, name, last_name, email, cf from user where id_user = ? ");
+						"select id_user as id, username, password, name, last_name, email, cf, active from user where id_user = ? ");
 				pstmt.setInt(1, id);
 
 				ResultSet rs = pstmt.executeQuery();
 				if (rs.next()) {
 					u = new User(rs.getInt("id"), rs.getString("name"), rs.getString("last_name"), rs.getString("cf"),
-							rs.getString("username"), rs.getString("email"), rs.getString("password"));
+							rs.getString("username"), rs.getString("email"), rs.getString("password"), rs.getInt("active"));
 
 				} else {
 					throw new Exception("Utente non trovato con id: " + id);
@@ -145,4 +145,29 @@ public class UserRepository {
 		return u;
 	}
 
+	public void logicDelete(Integer id) throws Exception{
+
+		Connection conn = null;
+		try {
+			conn = LipariMysqlDatabaseManager.getInstance().openMysqlConnection();
+
+			conn.setAutoCommit(false);
+
+			PreparedStatement pstmt = conn.prepareStatement("update user set active = 0 where id_user = ?");
+			pstmt.setInt(1, id);
+
+			int affectedRows = pstmt.executeUpdate();
+			if (affectedRows != 1) {
+				throw new DataException("Utente non trovato con id: " + id);
+			}
+			conn.commit();
+		} catch (Exception e) {
+			conn.rollback();
+			throw new Exception(e);
+		} finally {
+			if (conn != null) {
+				conn.close();
+			}
+		}
+	}
 }
