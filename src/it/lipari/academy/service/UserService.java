@@ -12,6 +12,8 @@ public interface UserService {
 	UserDto updateFiscalCode(Integer userId, String cf) throws Exception;
 
 	void createUser(String name, String lastName, String cf, String username, String email, String password, int active) throws Exception;
+
 	void logicDelete(Integer id) throws Exception;
 
+	UserDto findUserById(Integer id) throws Exception;
 }

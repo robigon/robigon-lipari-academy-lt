@@ -23,7 +23,7 @@ public class UserRepository {
 			conn = LipariMysqlDatabaseManager.getInstance().openMysqlConnection();
 			conn.setAutoCommit(false);
 
-			//String name, String lastName, String cf, String username, String email, String password
+			//String name, String lastName, String cf, String username, String email, String password, int active
 			PreparedStatement pstmt = conn.prepareStatement("INSERT INTO user (name, last_name, cf, username, email, password, active) VALUES (?,?,?,?,?,?,?)");
 			pstmt.setString(1, name);
 			pstmt.setString(2, lastName);
@@ -48,6 +48,36 @@ public class UserRepository {
 		}
 	}
 
+	public User findUserById(Integer id) throws Exception{
+		User user;
+		Connection conn = null;
+		try {
+			conn = LipariMysqlDatabaseManager.getInstance().openMysqlConnection();
+			conn.setAutoCommit(false);
+
+			PreparedStatement pstmt = conn.prepareStatement("SELECT id_user, name, last_name, username, cf, email, password, active FROM user WHERE id_user = ?");
+			pstmt.setInt(1, id);
+
+			ResultSet rs = pstmt.executeQuery();
+			if (rs.next()) {
+				user = new User(rs.getInt("id_user"), rs.getString("name"), rs.getString("last_name"), rs.getString("cf"),
+						rs.getString("username"), rs.getString("email"), rs.getString("password"), rs.getInt("active"));
+			} else {
+				throw new DataException("Utente con id: " + id + " non trovato");
+			}
+
+			conn.commit();
+		}catch (Exception e) {
+			conn.rollback();
+			throw new DataException("Errore durante la connessione al database" + e);
+		} finally {
+			if (conn != null) {
+				conn.close();
+			}
+		}
+		return user;
+	}
+
 	/**
 	 * Recupero della lista degl iutenti
 	 * 
@@ -69,7 +99,7 @@ public class UserRepository {
 			conn = LipariMysqlDatabaseManager.getInstance().openMysqlConnection();
 			Statement stmt = conn.createStatement();
 			ResultSet rs = stmt
-					.executeQuery("select id_user as id, username, password, name, last_name, email, cf, active from user ");
+					.executeQuery("select id_user as id, username, password, name, last_name, email, cf, active from user");
 			while (rs.next()) {
 				users.add(new User(rs.getInt("id"), rs.getString("name"), rs.getString("last_name"), rs.getString("cf"),
 						rs.getString("username"), rs.getString("email"), rs.getString("password"), rs.getInt("active")));

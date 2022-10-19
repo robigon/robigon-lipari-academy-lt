@@ -14,15 +14,6 @@ public class User {
 	public User() {
 	}
 
-	public User(String name, String lastName, String cf, String username, String email, String password) {
-		this.name = name;
-		this.lastName = lastName;
-		this.cf = cf;
-		this.username = username;
-		this.email = email;
-		this.password = password;
-	}
-
 	public User(Integer id, String name, String lastName, String cf, String username, String email, String password, int active) {
 		this.id = id;
 		this.name = name;

@@ -23,6 +23,14 @@ public class UserServiceImpl implements UserService {
 		userRepository.createUser(name, lastName, cf, username, email, password, active);
 	}
 
+	public UserDto findUserById(Integer id) throws Exception{
+		User user = userRepository.findUserById(id);
+
+		UserDto userDto;
+		userDto = UserUtils.fromVoToDto(user);
+		return userDto;
+	}
+
 	@Override
 	public List<UserDto> findAll() throws Exception{
 		

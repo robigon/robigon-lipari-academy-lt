@@ -32,6 +32,25 @@ public class UserController {
 		return response;
 	}
 
+	public BaseResponse<UserDto> findUserById(Integer id) {
+		BaseResponse<UserDto> response = new BaseResponse<>();
+
+		try {
+			UserDto userDto = userService.findUserById(id);
+			response.setOkStatus(true);
+			response.setBody(userDto);
+
+		} catch (Exception e) {
+			e.printStackTrace();
+
+			response.setOkStatus(false);
+			response.setBody(null);
+			response.addError(e.getMessage());
+		}
+
+		return response;
+	}
+
 	public BaseResponse<List<UserDto>> findAll() {
 
 		List<UserDto> result = null;
