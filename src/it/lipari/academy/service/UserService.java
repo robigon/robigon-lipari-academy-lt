@@ -12,4 +12,6 @@ public interface UserService {
 	UserDto updateFiscalCode(Integer userId, String cf) throws Exception;
 
 	UserDto logicDelete(Integer id) throws DataException;
+
+	List<UserDto> filtra();
 }

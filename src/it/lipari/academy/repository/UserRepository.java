@@ -12,6 +12,7 @@ import com.mysql.cj.PreparedQuery;
 
 import it.lipari.academy.database.LipariMysqlDatabaseManager;
 import it.lipari.academy.exception.DataException;
+import it.lipari.academy.model.vo.FiltraUtenti;
 import it.lipari.academy.model.vo.User;
 
 public class UserRepository {
@@ -134,5 +135,39 @@ public class UserRepository {
 			throw new DataException("Errore durante la connessione al database", e);
 		}
 		return new User();
+	}
+public List<FiltraUtenti> filtra() throws DataException
+	
+	{
+
+		List<FiltraUtenti> users = new ArrayList<FiltraUtenti>();
+
+		Connection conn = null;
+		try {
+			//query per filtrare per username, name, cognome e email
+			conn = LipariMysqlDatabaseManager.getInstance().openMysqlConnection();
+			Statement stmt = conn.createStatement();
+			ResultSet rs = stmt.executeQuery("select  username, name, last_name, email from user where name like '%a%' and length(name) >=3 ");
+			while (rs.next()) {
+				users.add(new FiltraUtenti(rs.getString("username"), rs.getString("name"), rs.getString("last_name"), rs.getString("email")));
+			}
+			
+		} catch (SQLException e) {
+			
+			throw new DataException("Errore durante la connessione al database", e);
+		} catch (Exception ex) {
+		
+			throw new DataException("Errore generico");
+			
+		} finally {
+			if (conn != null) {
+				try {
+					conn.close();
+				} catch (SQLException e) {
+					throw new DataException("Errore durante la chiusura della connessione", e);
+				}
+			}
+		}
+		return users;
 	}
 }

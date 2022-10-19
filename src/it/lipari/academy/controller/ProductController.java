@@ -38,7 +38,7 @@ private ProductService productService;
 	
 	
 	
-
+/*
 public BaseResponse<ProductDto> updateProduct(Integer id_product, String code, String description, Double cost, Integer availability, Integer create_user, Integer create_time, Integer last_update_user,  Integer last_update_time ) {
 	
 	BaseResponse<ProductDto> responseproductupdate = new BaseResponse<>();
@@ -55,7 +55,7 @@ public BaseResponse<ProductDto> updateProduct(Integer id_product, String code, S
 		responseproductupdate.setBody(null);
 		responseproductupdate.addError(e.getMessage());
 	}
-	return responseproductupdate;
+	return responseproductupdate;*/
 }
 
 
@@ -65,7 +65,7 @@ public BaseResponse<ProductDto> updateProduct(Integer id_product, String code, S
 
 
 
-}
+
 
 	
 	

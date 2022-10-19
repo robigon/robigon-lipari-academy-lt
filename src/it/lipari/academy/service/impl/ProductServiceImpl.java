@@ -29,7 +29,7 @@ public class ProductServiceImpl implements ProductService{
 				);
 		return dtoList;
 	}
-
+/*
 	@Override
 	public ProductDto updateProduct(Integer id_product, String code, String description, Double cost,
 			Integer availability, Date create_user, Integer create_time, Date last_update_user,
@@ -37,6 +37,14 @@ public class ProductServiceImpl implements ProductService{
 		Product u = ProductRepository.updateProduct(id_product,code, description,cost,availability,create_user,create_time,last_update_user,last_update_time);
 	
 	
+	}*/
+
+	@Override
+	public ProductDto updateProduct(Integer id_product, String code, String description, Double cost,
+			Integer availability, Date create_user, Integer create_time, Date last_update_user,
+			Integer last_update_time) throws Exception {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }
 
