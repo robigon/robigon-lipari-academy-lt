@@ -16,4 +16,6 @@ public interface UserService {
 	void logicDelete(Integer id) throws Exception;
 
 	UserDto findUserById(Integer id) throws Exception;
+
+	void updateUser(Integer id, String name, String lastName, String username, String password, String cf, String email, int active) throws Exception;
 }

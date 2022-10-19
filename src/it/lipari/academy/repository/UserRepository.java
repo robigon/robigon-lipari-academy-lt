@@ -124,6 +124,39 @@ public class UserRepository {
 		return users;
 	}
 
+	public void updateUser(Integer id, String name, String lastName, String username, String password, String cf, String email, int active) throws Exception {
+		Connection conn = null;
+
+		try {
+			conn = LipariMysqlDatabaseManager.getInstance().openMysqlConnection();
+			conn.setAutoCommit(false);
+
+			PreparedStatement pstmt = conn.prepareStatement("UPDATE user SET name = ?, last_name = ?, username = ?, password = ?, cf = ?, email = ?, active = ? WHERE id_user = ?");
+			pstmt.setString(1, name);
+			pstmt.setString(2, lastName);
+			pstmt.setString(3, username);
+			pstmt.setString(4, password);
+			pstmt.setString(5, cf);
+			pstmt.setString(6, email);
+			pstmt.setInt(7, active);
+			pstmt.setInt(8, id);
+
+			int effectedRows = pstmt.executeUpdate();
+			if (effectedRows != 1) {
+				throw new Exception("Utente con id: " + id + " non trovato");
+			}
+
+			conn.commit();
+		} catch (Exception e) {
+			conn.rollback();
+			throw new DataException("Errore durante la connessione al database", e);
+		}finally {
+			if (conn != null) {
+				conn.close();
+			}
+		}
+	}
+
 	public User updateFiscalCode(final Integer id, final String cf) throws Exception {
 
 		User u = null;

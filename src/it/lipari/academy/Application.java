@@ -32,6 +32,8 @@ public class Application {
 			UserDto userDto2 = userDtoBaseResponseFindUserById.getBody();
 			System.out.println(userDto2);*/
 
+			/*BaseResponse<Void> voidBaseResponseUpdateUser = uC.updateUser(12, "Erika", "Canulli", "EriCan", "ErikaCanulli", "cf12", "erikacanulli@gmail.com", 1);*/
+
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
