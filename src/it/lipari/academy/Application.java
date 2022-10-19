@@ -26,7 +26,7 @@ public class Application {
 			BaseResponse<UserDto> userResponse = uC.updateFiscalCode(1, "LòSJNDFòSDNFJK");
 			UserDto user = userResponse.getBody();
 
-			BaseResponse<UserDto> logicalDeleteResponse = uC.logicalDelete(9);
+			BaseResponse<Void> logicalDeleteResponse = uC.logicalDelete(10);
 
 			
 		} catch (Exception e) {

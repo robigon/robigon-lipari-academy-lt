@@ -25,7 +25,7 @@ ALTER TABLE IF EXISTS `user` (
   `last_name` varchar(45) NOT NULL,
   `email` varchar(45) NOT NULL,
   `cf` varchar(16) NOT NULL,
-  `active` bit(1) NOT NULL,
+  `active` tinyint(1) NOT NULL,
   PRIMARY KEY (`id_user`)
 ) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 

@@ -45,12 +45,8 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public UserDto logicDelete(Integer id) throws DataException {
+	public void logicDelete(Integer id) throws Exception {
 
-		User user = userRepository.logicDelete(id);
-
-		UserDto response = UserUtils.fromVoToDto(user);
-
-		return response;
+		userRepository.logicDelete(id);
 	}
 }

@@ -115,9 +115,11 @@ public class UserRepository {
 		return u;
 	}
 
-	public User logicDelete(Integer id) throws DataException{
+	public void logicDelete(Integer id) throws Exception{
 
-		try(Connection conn = LipariMysqlDatabaseManager.getInstance().openMysqlConnection()) {
+		Connection conn = null;
+		try {
+			conn = LipariMysqlDatabaseManager.getInstance().openMysqlConnection();
 
 			conn.setAutoCommit(false);
 
@@ -126,13 +128,16 @@ public class UserRepository {
 
 			int affectedRows = pstmt.executeUpdate();
 			if (affectedRows != 1) {
-				conn.rollback();
 				throw new DataException("Utente non trovato con id: " + id);
 			}
 			conn.commit();
-		} catch (SQLException e) {
-			throw new DataException("Errore durante la connessione al database", e);
+		} catch (Exception e) {
+			conn.rollback();
+			throw new Exception(e);
+		} finally {
+			if (conn != null) {
+				conn.close();
+			}
 		}
-		return new User();
 	}
 }
