@@ -61,6 +61,11 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
+	public void deleteUser(Integer id) throws Exception {
+		userRepository.deleteUser(id);
+	}
+
+	@Override
 	public void logicDelete(Integer id) throws Exception {
 		userRepository.logicDelete(id);
 	}

@@ -48,7 +48,7 @@ public class UserRepository {
 		}
 	}
 
-	public User findUserById(Integer id) throws Exception{
+	public User findUserById(Integer id) throws Exception {
 		User user;
 		Connection conn = null;
 		try {
@@ -208,9 +208,35 @@ public class UserRepository {
 		return u;
 	}
 
-	public void logicDelete(Integer id) throws Exception{
-
+	public void deleteUser(Integer id) throws Exception {
 		Connection conn = null;
+
+		try {
+			conn = LipariMysqlDatabaseManager.getInstance().openMysqlConnection();
+			conn.setAutoCommit(false);
+
+			PreparedStatement pstmt = conn.prepareStatement("DELETE FROM user WHERE id_user = ?");
+			pstmt.setInt(1, id);
+
+			int effectedRows = pstmt.executeUpdate();
+			if (effectedRows != 1) {
+				throw new DataException("Utente con id: " + id + " non trovato");
+			}
+
+			conn.commit();
+		} catch (Exception e) {
+			conn.rollback();
+			throw new DataException("Errore durante la connessione al database", e);
+		} finally {
+			if (conn != null) {
+				conn.close();
+			}
+		}
+	}
+
+	public void logicDelete(Integer id) throws Exception {
+		Connection conn = null;
+
 		try {
 			conn = LipariMysqlDatabaseManager.getInstance().openMysqlConnection();
 

@@ -34,6 +34,8 @@ public class Application {
 
 			/*BaseResponse<Void> voidBaseResponseUpdateUser = uC.updateUser(12, "Erika", "Canulli", "EriCan", "ErikaCanulli", "cf12", "erikacanulli@gmail.com", 1);*/
 
+			/*BaseResponse<Void> voidBaseResponseDeleteUser = uC.deleteUser(11);*/
+
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

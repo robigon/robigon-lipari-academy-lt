@@ -110,7 +110,25 @@ public class UserController {
 		return response;
 	}
 
-	public BaseResponse<Void> logicalDelete(Integer id){
+	public BaseResponse<Void> deleteUser(Integer id) {
+		BaseResponse<Void> response = new BaseResponse<>();
+
+		try {
+			userService.deleteUser(id);
+			response.setOkStatus(true);
+			response.setBody(null);
+
+		} catch (Exception e) {
+			e.printStackTrace();
+
+			response.setOkStatus(false);
+			response.setBody(null);
+			response.addError(e.getMessage());
+		}
+		return response;
+	}
+
+	public BaseResponse<Void> logicalDelete(Integer id) {
 
 		BaseResponse<Void> response = new BaseResponse<>();
 
