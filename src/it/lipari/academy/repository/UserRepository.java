@@ -16,13 +16,13 @@ import it.lipari.academy.model.vo.FiltraUtenti;
 import it.lipari.academy.model.vo.User;
 
 public class UserRepository {
-
+ 
 	/**
 	 * Recupero della lista degl iutenti
 	 * 
 	 * @return
 	 * @throws Exception
-	 * @throws
+	 * @throws 
 	 */
 	public List<User> findAll() throws DataException
 	

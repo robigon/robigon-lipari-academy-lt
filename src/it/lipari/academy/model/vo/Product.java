@@ -1,6 +1,9 @@
 package it.lipari.academy.model.vo;
 
 import java.sql.Date;
+import java.sql.Timestamp;
+
+
 
 public class Product {
 	private Integer id_product;
@@ -9,16 +12,16 @@ public class Product {
 	private Double cost;
 	private Integer availability;
 	private Integer create_user;
-	private Date create_time;
+	private Timestamp create_time;
 	private Integer last_update_user;
-	private Date last_update_time;
+	private Timestamp last_update_time;
 	
 	
 	
 	public Product() {
-		
+		 
 	}
-	public Product(Integer id_product, String code, String description, Double cost, Integer availability, Integer create_user, Date create_time, Integer last_update_user, Date last_update_time) {
+	public Product(Integer id_product, String code, String description, Double cost, Integer availability, Integer create_user, Timestamp create_time, Integer last_update_user, Timestamp last_update_time) {
 		this.id_product = id_product;
 		this.code = code;
 		this.description = description;
@@ -68,10 +71,10 @@ public class Product {
 	public void setCreate_user(Integer create_user) {
 		this.create_user = create_user;
 	}
-	public Date getCreate_time() {
+	public Timestamp getCreate_time() {
 		return create_time;
 	}
-	public void setCreate_time(Date create_time) {
+	public void setCreate_time(Timestamp create_time) {
 		this.create_time = create_time;
 	}
 	public Integer getLast_update_user() {
@@ -80,10 +83,10 @@ public class Product {
 	public void setLast_update_user(Integer last_update_user) {
 		this.last_update_user = last_update_user;
 	}
-	public Date getLast_update_time() {
+	public Timestamp getLast_update_time() {
 		return last_update_time;
 	}
-	public void setLast_update_time(Date last_update_time) {
+	public void setLast_update_time(Timestamp last_update_time) {
 		this.last_update_time = last_update_time;
 	}
 	

@@ -1,6 +1,7 @@
 package it.lipari.academy.model.dto;
 
 import java.sql.Date;
+import java.sql.Timestamp;
 
 public class ProductDto {
 	private Integer id_product;
@@ -9,9 +10,9 @@ public class ProductDto {
 	private Double cost;
 	private Integer availability;
 	private Integer create_user;
-	private Date create_time;
+	private Timestamp create_time;
 	private Integer last_update_user;
-	private Date last_update_time;
+	private Timestamp last_update_time;
 
 	
 	public ProductDto() {
@@ -79,12 +80,12 @@ public class ProductDto {
 	}
 
 
-	public Date getCreate_time() {
+	public Timestamp getCreate_time() {
 		return create_time;
 	}
 
 
-	public void setCreate_time(Date create_time) {
+	public void setCreate_time(Timestamp create_time) {
 		this.create_time = create_time;
 	}
 
@@ -99,12 +100,12 @@ public class ProductDto {
 	}
 
 
-	public Date getLast_update_time() {
+	public Timestamp getLast_update_time() {
 		return last_update_time;
 	}
 
 
-	public void setLast_update_time(Date last_update_time) {
+	public void setLast_update_time(Timestamp last_update_time) {
 		this.last_update_time = last_update_time;
 	}
 	
@@ -122,4 +123,7 @@ public class ProductDto {
 				", last_update_time=" + last_update_time +
 				'}';
 	}
+
+
+
 }

@@ -13,14 +13,14 @@ import it.lipari.academy.model.vo.Product;
 			retProduct.setId_product(p.getId_product());
 			retProduct.setCode(p.getCode());
 			retProduct.setDescription(p.getDescription());
-			retProduct.setCost(p.getCost());
+			retProduct.setCost(p.getCost()); 
 			retProduct.setAvailability(p.getAvailability());
 			retProduct.setCreate_user(p.getCreate_user());
 			retProduct.setCreate_time(p.getCreate_time());
 			retProduct.setLast_update_user(p.getLast_update_user());
 			retProduct.setLast_update_time(p.getLast_update_time());
 
-			return retProduct;
+			return retProduct; 
 		}
 
 

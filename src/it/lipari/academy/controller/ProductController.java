@@ -1,5 +1,7 @@
 package it.lipari.academy.controller;
 
+import java.sql.Date;
+import java.sql.Timestamp;
 import java.util.List;
 
 import it.lipari.academy.model.dto.ProductDto;
@@ -16,7 +18,7 @@ private ProductService productService;
 	
 	public BaseResponse <List<ProductDto>> esSelectProduct(){
 		List<ProductDto> result = null;
-		BaseResponse<List<ProductDto>> response = new BaseResponse<>();
+		BaseResponse<List<ProductDto>> response = new BaseResponse<>(); 
 		try {
 			result = productService.esSelectProduct();
 			
@@ -38,13 +40,13 @@ private ProductService productService;
 	
 	
 	
-/*
-public BaseResponse<ProductDto> updateProduct(Integer id_product, String code, String description, Double cost, Integer availability, Integer create_user, Integer create_time, Integer last_update_user,  Integer last_update_time ) {
+
+public BaseResponse<ProductDto> updateProduct(Integer id_product, String code, String description, Double cost, Integer availability, Integer last_update_user, Timestamp last_update_time) {
 	
 	BaseResponse<ProductDto> responseproductupdate = new BaseResponse<>();
 	
-	try {
-		ProductDto dto = productService.updateProduct(id_product, code, description, cost, availability, create_user, create_time, last_update_user, last_update_time);
+ 	try {
+		ProductDto dto = productService.updateProduct(id_product, code, description, cost, availability, last_update_user, last_update_time);
 		responseproductupdate.setOkStatus(true);
 		responseproductupdate.setBody(dto);
 		
@@ -55,9 +57,11 @@ public BaseResponse<ProductDto> updateProduct(Integer id_product, String code, S
 		responseproductupdate.setBody(null);
 		responseproductupdate.addError(e.getMessage());
 	}
-	return responseproductupdate;*/
+	return responseproductupdate;
 }
 
+
+}
 
 
 

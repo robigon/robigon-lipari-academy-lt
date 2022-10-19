@@ -1,12 +1,16 @@
 package it.lipari.academy.service.impl;
 
 import java.sql.Date;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 
 import it.lipari.academy.model.dto.ProductDto;
+import it.lipari.academy.model.dto.UserDto;
 import it.lipari.academy.model.vo.Product;
+import it.lipari.academy.model.vo.User;
 import it.lipari.academy.pattern.utils.ProductUtils;
+import it.lipari.academy.pattern.utils.UserUtils;
 import it.lipari.academy.repository.ProductRepository;
 import it.lipari.academy.service.ProductService;
 
@@ -15,7 +19,7 @@ public class ProductServiceImpl implements ProductService{
 	
 	public ProductServiceImpl(ProductRepository productRepository) {
 		this.productRepository = new ProductRepository();
-		}
+		} 
 
 	@Override
 	public List<ProductDto> esSelectProduct() throws Exception {
@@ -40,12 +44,15 @@ public class ProductServiceImpl implements ProductService{
 	}*/
 
 	@Override
-	public ProductDto updateProduct(Integer id_product, String code, String description, Double cost,
-			Integer availability, Date create_user, Integer create_time, Date last_update_user,
-			Integer last_update_time) throws Exception {
-		// TODO Auto-generated method stub
-		return null;
+	public ProductDto updateProduct(Integer id_product, String code, String description, Double cost, Integer availability, Integer last_update_user, Timestamp last_update_time) throws Exception {
+		Product product = ProductRepository.updateProduct(id_product, code, description, cost, availability, last_update_user, last_update_time, last_update_user, last_update_time);
+				ProductDto response = ProductUtils.fromVoToDto(product);
+ 
+		return response;
 	}
+
+	
+	
 }
 
 	

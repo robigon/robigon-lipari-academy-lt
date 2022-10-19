@@ -1,5 +1,7 @@
 package it.lipari.academy;
 
+import java.sql.Date;
+import java.sql.Timestamp;
 import java.util.List;
 
 import it.lipari.academy.controller.ProductController;
@@ -15,7 +17,15 @@ import it.lipari.academy.service.impl.UserServiceImpl;
 public class Application {
 
 	public static void main(String[] args) {
-
+		/*Integer id_product = null;
+		String code=null;
+		String description=null;
+		 Double cost=null;
+		 Integer availability=null;
+		 Integer create_user=null;
+		 Date create_time=null;
+		 Integer last_update_user=null;
+		 Date last_update_time=null;*/
 		try {
 
 			UserController uC = new UserController(new UserServiceImpl(new UserRepository()));
@@ -56,6 +66,10 @@ public class Application {
 			} else {
 				
 			}
+			
+			BaseResponse<ProductDto> productResponse = pC.updateProduct( 1 , "3423", "ttttt", 11.1, 6, 4, new Timestamp(System.currentTimeMillis()));
+			ProductDto product = productResponse.getBody();
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
