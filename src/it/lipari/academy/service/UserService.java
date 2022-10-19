@@ -10,4 +10,5 @@ public interface UserService {
 
 	UserDto updateFiscalCode(Integer userId, String cf) throws Exception;
 
+	void createUser(String name, String lastName, String cf, String username, String email, String password) throws Exception;
 }

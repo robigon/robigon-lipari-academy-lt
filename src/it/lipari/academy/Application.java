@@ -17,18 +17,15 @@ public class Application {
 			UserController uC = new UserController(new UserServiceImpl(new UserRepository()));
 			BaseResponse<List<UserDto>> response = uC.findAll();
 			
-			if(response.isOkStatus()) {
-				List<UserDto> users = response.getBody();
-				System.out.println("Stampa degli utenti in corso...");
-				users.stream().forEach(u -> System.out.println(u));
-			} else {
-				
-			}
-			
-			BaseResponse<UserDto> userResponse = uC.updateFiscalCode(1, "LòSJNDFòSDNFJK");
-			UserDto user = userResponse.getBody();
-			
-			
+			BaseResponse<UserDto> userDtoBaseResponse = uC.createUser("Alessandro", "Canulli", "codiceFiscale", "CanAle97", "canale97.dev@gmail.com", "password");
+
+			List<UserDto> users = response.getBody();
+			System.out.println("Stampa degli utenti in corso...");
+			users.stream().forEach(u -> System.out.println(u));
+
+			/*BaseResponse<UserDto> userResponse = uC.updateFiscalCode(1, "LòSJNDFòSDNFJK");
+			UserDto user = userResponse.getBody();*/
+
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

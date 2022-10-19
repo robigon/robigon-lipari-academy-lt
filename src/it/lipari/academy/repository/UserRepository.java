@@ -16,6 +16,38 @@ import it.lipari.academy.model.vo.User;
 
 public class UserRepository {
 
+	public void createUser(String name, String lastName, String cf, String username, String email, String password, String active) throws Exception {
+		Connection conn = null;
+
+		try {
+			conn = LipariMysqlDatabaseManager.getInstance().openMysqlConnection();
+			conn.setAutoCommit(false);
+
+			//String name, String lastName, String cf, String username, String email, String password
+			PreparedStatement pstmt = conn.prepareStatement("INSERT INTO user (name, last_name, cf, username, email, password, active) VALUES (?,?,?,?,?,?,?)");
+			pstmt.setString(1, name);
+			pstmt.setString(2, lastName);
+			pstmt.setString(3, cf);
+			pstmt.setString(4, username);
+			pstmt.setString(5, email);
+			pstmt.setString(6, password);
+			pstmt.setString(6, active);
+
+			int affectedRows = pstmt.executeUpdate();
+			if (affectedRows != 1) {
+				throw new DataException("Utente non creato");
+			}
+			conn.commit();
+		} catch (Exception e) {
+			conn.rollback();
+			throw new DataException("Errore durante la connessione al database", e);
+		} finally {
+			if (conn != null) {
+				conn.close();
+			}
+		}
+	}
+
 	/**
 	 * Recupero della lista degl iutenti
 	 * 
@@ -23,9 +55,7 @@ public class UserRepository {
 	 * @throws Exception
 	 * @throws
 	 */
-	public List<User> findAll() throws DataException
-	
-	{
+	public List<User> findAll() throws DataException {
 
 		List<User> users = new ArrayList<User>();
 

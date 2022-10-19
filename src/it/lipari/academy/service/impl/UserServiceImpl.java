@@ -18,6 +18,9 @@ public class UserServiceImpl implements UserService {
 		this.userRepository = userRepository;
 	}
 
+	public void createUser(String name, String lastName, String cf, String username, String email, String password) throws Exception{
+		userRepository.createUser(name, lastName, cf, username, email, password);
+	}
 
 	@Override
 	public List<UserDto> findAll() throws Exception{

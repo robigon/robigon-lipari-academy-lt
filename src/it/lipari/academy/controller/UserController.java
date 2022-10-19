@@ -13,7 +13,25 @@ public class UserController {
 	public UserController(UserService userService) {
 		this.userService=userService;
 	}
-	
+
+	public BaseResponse<UserDto> createUser(String name, String lastName, String cf, String username, String email, String password) {
+		BaseResponse<UserDto> response = new BaseResponse<>();
+
+		try {
+			userService.createUser(name, lastName, cf, username, email, password);
+			response.setOkStatus(true);
+			response.setBody(null);
+
+		} catch (Exception e) {
+			e.printStackTrace();
+
+			response.setOkStatus(false);
+			response.setBody(null);
+			response.addError(e.getMessage());
+		}
+		return response;
+	}
+
 	public BaseResponse<List<UserDto>> findAll() {
 		
 		List<UserDto> result = null;
