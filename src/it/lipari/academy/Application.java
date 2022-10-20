@@ -62,10 +62,9 @@ public class Application {
 			
 			BaseResponse<ProductDto> productResponse = pC.updateProduct( 1 , "5555", "ttttt", 11.1, 6, 4, new Timestamp(System.currentTimeMillis()));
 			ProductDto product = productResponse.getBody();
-			/* Questo è commentato perchè dopo la insert c'è la delete
 			BaseResponse<ProductDto> insertproductResponse = pC.insertProduct( 4 , "5555", "ttttt", 11.1, 6, 4, new Timestamp(System.currentTimeMillis()),4, new Timestamp(System.currentTimeMillis()));
-			*/
-			BaseResponse<ProductDto> deleteResponse = pC.deleteProduct(4);
+			
+			BaseResponse<ProductDto> deleteResponse = pC.deleteProduct(9);
 
 						
 		} catch (Exception e) {
