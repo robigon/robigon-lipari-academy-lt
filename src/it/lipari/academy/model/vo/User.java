@@ -9,12 +9,13 @@ public class User {
 	private String username;
 	private String email;
 	private String password;
+	private int active;
 
 	
 	public User() {
 	}
 
-	public User(Integer id, String name, String lastName, String cf, String username, String email, String password) {
+	public User(Integer id, String name, String lastName, String cf, String username, String email, String password, int active) {
 		this.id = id;
 		this.name = name;
 		this.lastName = lastName;
@@ -22,6 +23,7 @@ public class User {
 		this.username = username;
 		this.email = email;
 		this.password = password;
+		this.active = active;
 	}
 
 	public String getName() {
@@ -78,5 +80,13 @@ public class User {
 
 	public void setPassword(String password) {
 		this.password = password;
+	}
+
+	public int getActive() {
+		return active;
+	}
+
+	public void setActive(int active) {
+		this.active = active;
 	}
 }
