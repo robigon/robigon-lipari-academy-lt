@@ -1,6 +1,5 @@
 package it.lipari.academy;
 
-import java.sql.Date;
 import java.sql.Timestamp;
 import java.util.List;
 
@@ -17,15 +16,7 @@ import it.lipari.academy.service.impl.UserServiceImpl;
 public class Application {
 
 	public static void main(String[] args) {
-		/*Integer id_product = null;
-		String code=null;
-		String description=null;
-		 Double cost=null;
-		 Integer availability=null;
-		 Integer create_user=null;
-		 Date create_time=null;
-		 Integer last_update_user=null;
-		 Date last_update_time=null;*/
+		
 		try {
 
 			UserController uC = new UserController(new UserServiceImpl(new UserRepository()));
@@ -71,7 +62,9 @@ public class Application {
 			
 			BaseResponse<ProductDto> productResponse = pC.updateProduct( 1 , "5555", "ttttt", 11.1, 6, 4, new Timestamp(System.currentTimeMillis()));
 			ProductDto product = productResponse.getBody();
-			//BaseResponse<ProductDto> insertproductResponse = pC.insertProduct( 4 , "5555", "ttttt", 11.1, 6, 4, new Timestamp(System.currentTimeMillis()),4, new Timestamp(System.currentTimeMillis()));
+			/* Questo è commentato perchè dopo la insert c'è la delete
+			BaseResponse<ProductDto> insertproductResponse = pC.insertProduct( 4 , "5555", "ttttt", 11.1, 6, 4, new Timestamp(System.currentTimeMillis()),4, new Timestamp(System.currentTimeMillis()));
+			*/
 			BaseResponse<ProductDto> deleteResponse = pC.deleteProduct(4);
 
 						
