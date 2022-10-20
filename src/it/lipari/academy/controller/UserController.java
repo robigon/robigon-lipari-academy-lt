@@ -14,6 +14,43 @@ public class UserController {
 		this.userService=userService;
 	}
 
+	public BaseResponse<UserDto> createUser(String name, String lastName, String cf, String username, String email, String password, int active) {
+		BaseResponse<UserDto> response = new BaseResponse<>();
+
+		try {
+			userService.createUser(name, lastName, cf, username, email, password, active);
+			response.setOkStatus(true);
+			response.setBody(null);
+
+		} catch (Exception e) {
+			e.printStackTrace();
+
+			response.setOkStatus(false);
+			response.setBody(null);
+			response.addError(e.getMessage());
+		}
+		return response;
+	}
+
+	public BaseResponse<UserDto> findUserById(Integer id) {
+		BaseResponse<UserDto> response = new BaseResponse<>();
+
+		try {
+			UserDto userDto = userService.findUserById(id);
+			response.setOkStatus(true);
+			response.setBody(userDto);
+
+		} catch (Exception e) {
+			e.printStackTrace();
+
+			response.setOkStatus(false);
+			response.setBody(null);
+			response.addError(e.getMessage());
+		}
+
+		return response;
+	}
+
 	public BaseResponse<List<UserDto>> findAll() {
 
 		List<UserDto> result = null;
@@ -36,6 +73,24 @@ public class UserController {
 		return response;
 	}
 
+	public BaseResponse<Void> updateUser(Integer id, String name, String lastName, String username, String password, String cf, String email, int active) {
+		BaseResponse<Void> response = new BaseResponse<>();
+
+		try {
+			userService.updateUser(id, name, lastName, username, password, cf, email, active);
+			response.setOkStatus(true);
+			response.setBody(null);
+
+		} catch (Exception e) {
+			e.printStackTrace();
+
+			response.setOkStatus(false);
+			response.setBody(null);
+			response.addError(e.getMessage());
+		}
+		return response;
+	}
+
 	public BaseResponse<UserDto> updateFiscalCode(Integer userId, String cf) {
 
 		BaseResponse<UserDto> response = new BaseResponse<>();
@@ -55,7 +110,25 @@ public class UserController {
 		return response;
 	}
 
-	public BaseResponse<Void> logicalDelete(Integer id){
+	public BaseResponse<Void> deleteUser(Integer id) {
+		BaseResponse<Void> response = new BaseResponse<>();
+
+		try {
+			userService.deleteUser(id);
+			response.setOkStatus(true);
+			response.setBody(null);
+
+		} catch (Exception e) {
+			e.printStackTrace();
+
+			response.setOkStatus(false);
+			response.setBody(null);
+			response.addError(e.getMessage());
+		}
+		return response;
+	}
+
+	public BaseResponse<Void> logicalDelete(Integer id) {
 
 		BaseResponse<Void> response = new BaseResponse<>();
 

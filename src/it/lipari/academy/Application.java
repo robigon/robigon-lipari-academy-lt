@@ -16,19 +16,26 @@ public class Application {
 
 			UserController uC = new UserController(new UserServiceImpl(new UserRepository()));
 
-			BaseResponse<List<UserDto>> response = uC.findAll();
-			if(response.isOkStatus()) {
-				List<UserDto> users = response.getBody();
-				System.out.println("Stampa degli utenti in corso...");
-				users.stream().forEach(u -> System.out.println(u));
-			}
+			/*BaseResponse<List<UserDto>> listBaseResponseFindAll = uC.findAll();
+			List<UserDto> users = listBaseResponseFindAll.getBody();
+			System.out.println("Stampa degli utenti in corso...");
+			users.stream().forEach(u -> System.out.println(u));*/
 
-			BaseResponse<UserDto> userResponse = uC.updateFiscalCode(1, "LòSJNDFòSDNFJK");
-			UserDto user = userResponse.getBody();
+			/*BaseResponse<UserDto> userDtoBaseResponseUpdateFiscalCode = uC.updateFiscalCode(1, "LòSJNDFòSDNFJK");
+			UserDto userDto1 = userDtoBaseResponseUpdateFiscalCode.getBody();*/
 
-			BaseResponse<Void> logicalDeleteResponse = uC.logicalDelete(10);
+			/*BaseResponse<Void> voidBaseResponseLogicalDelete = uC.logicalDelete(10);*/
 
-			
+			/*BaseResponse<UserDto> userDtoBaseResponseCreateUser = uC.createUser("Alessandro", "Canulli", "codiceFiscale", "CanAle97", "canale97.dev@gmail.com", "password", 0);*/
+
+			/*BaseResponse<UserDto> userDtoBaseResponseFindUserById = uC.findUserById(4);
+			UserDto userDto2 = userDtoBaseResponseFindUserById.getBody();
+			System.out.println(userDto2);*/
+
+			/*BaseResponse<Void> voidBaseResponseUpdateUser = uC.updateUser(12, "Erika", "Canulli", "EriCan", "ErikaCanulli", "cf12", "erikacanulli@gmail.com", 1);*/
+
+			/*BaseResponse<Void> voidBaseResponseDeleteUser = uC.deleteUser(11);*/
+
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

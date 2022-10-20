@@ -16,6 +16,68 @@ import it.lipari.academy.model.vo.User;
 
 public class UserRepository {
 
+	public void createUser(String name, String lastName, String cf, String username, String email, String password, int active) throws Exception {
+		Connection conn = null;
+
+		try {
+			conn = LipariMysqlDatabaseManager.getInstance().openMysqlConnection();
+			conn.setAutoCommit(false);
+
+			//String name, String lastName, String cf, String username, String email, String password, int active
+			PreparedStatement pstmt = conn.prepareStatement("INSERT INTO user (name, last_name, cf, username, email, password, active) VALUES (?,?,?,?,?,?,?)");
+			pstmt.setString(1, name);
+			pstmt.setString(2, lastName);
+			pstmt.setString(3, cf);
+			pstmt.setString(4, username);
+			pstmt.setString(5, email);
+			pstmt.setString(6, password);
+			pstmt.setInt(7, active);
+
+			int affectedRows = pstmt.executeUpdate();
+			if (affectedRows != 1) {
+				throw new DataException("Utente non creato");
+			}
+			conn.commit();
+		} catch (Exception e) {
+			conn.rollback();
+			throw new DataException("Errore durante la connessione al database", e);
+		} finally {
+			if (conn != null) {
+				conn.close();
+			}
+		}
+	}
+
+	public User findUserById(Integer id) throws Exception {
+		User user;
+		Connection conn = null;
+		try {
+			conn = LipariMysqlDatabaseManager.getInstance().openMysqlConnection();
+			conn.setAutoCommit(false);
+
+			PreparedStatement pstmt = conn.prepareStatement("SELECT id_user, name, last_name, username, cf, email, password, active FROM user WHERE id_user = ?");
+			pstmt.setInt(1, id);
+
+			ResultSet rs = pstmt.executeQuery();
+			if (rs.next()) {
+				user = new User(rs.getInt("id_user"), rs.getString("name"), rs.getString("last_name"), rs.getString("cf"),
+						rs.getString("username"), rs.getString("email"), rs.getString("password"), rs.getInt("active"));
+			} else {
+				throw new DataException("Utente con id: " + id + " non trovato");
+			}
+
+			conn.commit();
+		}catch (Exception e) {
+			conn.rollback();
+			throw new DataException("Errore durante la connessione al database" + e);
+		} finally {
+			if (conn != null) {
+				conn.close();
+			}
+		}
+		return user;
+	}
+
 	/**
 	 * Recupero della lista degl iutenti
 	 * 
@@ -23,9 +85,7 @@ public class UserRepository {
 	 * @throws Exception
 	 * @throws
 	 */
-	public List<User> findAll() throws DataException
-	
-	{
+	public List<User> findAll() throws DataException {
 
 		List<User> users = new ArrayList<User>();
 
@@ -39,7 +99,7 @@ public class UserRepository {
 			conn = LipariMysqlDatabaseManager.getInstance().openMysqlConnection();
 			Statement stmt = conn.createStatement();
 			ResultSet rs = stmt
-					.executeQuery("select id_user as id, username, password, name, last_name, email, cf, active from user ");
+					.executeQuery("select id_user as id, username, password, name, last_name, email, cf, active from user");
 			while (rs.next()) {
 				users.add(new User(rs.getInt("id"), rs.getString("name"), rs.getString("last_name"), rs.getString("cf"),
 						rs.getString("username"), rs.getString("email"), rs.getString("password"), rs.getInt("active")));
@@ -62,6 +122,39 @@ public class UserRepository {
 			}
 		}
 		return users;
+	}
+
+	public void updateUser(Integer id, String name, String lastName, String username, String password, String cf, String email, int active) throws Exception {
+		Connection conn = null;
+
+		try {
+			conn = LipariMysqlDatabaseManager.getInstance().openMysqlConnection();
+			conn.setAutoCommit(false);
+
+			PreparedStatement pstmt = conn.prepareStatement("UPDATE user SET name = ?, last_name = ?, username = ?, password = ?, cf = ?, email = ?, active = ? WHERE id_user = ?");
+			pstmt.setString(1, name);
+			pstmt.setString(2, lastName);
+			pstmt.setString(3, username);
+			pstmt.setString(4, password);
+			pstmt.setString(5, cf);
+			pstmt.setString(6, email);
+			pstmt.setInt(7, active);
+			pstmt.setInt(8, id);
+
+			int effectedRows = pstmt.executeUpdate();
+			if (effectedRows != 1) {
+				throw new Exception("Utente con id: " + id + " non trovato");
+			}
+
+			conn.commit();
+		} catch (Exception e) {
+			conn.rollback();
+			throw new DataException("Errore durante la connessione al database", e);
+		}finally {
+			if (conn != null) {
+				conn.close();
+			}
+		}
 	}
 
 	public User updateFiscalCode(final Integer id, final String cf) throws Exception {
@@ -115,9 +208,35 @@ public class UserRepository {
 		return u;
 	}
 
-	public void logicDelete(Integer id) throws Exception{
-
+	public void deleteUser(Integer id) throws Exception {
 		Connection conn = null;
+
+		try {
+			conn = LipariMysqlDatabaseManager.getInstance().openMysqlConnection();
+			conn.setAutoCommit(false);
+
+			PreparedStatement pstmt = conn.prepareStatement("DELETE FROM user WHERE id_user = ?");
+			pstmt.setInt(1, id);
+
+			int effectedRows = pstmt.executeUpdate();
+			if (effectedRows != 1) {
+				throw new DataException("Utente con id: " + id + " non trovato");
+			}
+
+			conn.commit();
+		} catch (Exception e) {
+			conn.rollback();
+			throw new DataException("Errore durante la connessione al database", e);
+		} finally {
+			if (conn != null) {
+				conn.close();
+			}
+		}
+	}
+
+	public void logicDelete(Integer id) throws Exception {
+		Connection conn = null;
+
 		try {
 			conn = LipariMysqlDatabaseManager.getInstance().openMysqlConnection();
 
