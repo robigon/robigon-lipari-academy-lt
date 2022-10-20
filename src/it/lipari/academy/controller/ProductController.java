@@ -61,6 +61,26 @@ public BaseResponse<ProductDto> updateProduct(Integer id_product, String code, S
 }
 
 
+public BaseResponse<ProductDto> insertProduct(Integer id_product, String code, String description, Double cost, Integer availability,
+		Integer create_user, Timestamp create_time, Integer last_update_user, Timestamp last_update_time) {
+	
+	BaseResponse<ProductDto> responseproductupdate = new BaseResponse<>();
+	
+ 	try {
+		ProductDto dto = productService.insertProduct(id_product, code, description, cost, availability,create_user,create_time, last_update_user, last_update_time);
+		responseproductupdate.setOkStatus(true);
+		responseproductupdate.setBody(dto);
+		
+	} catch (Exception e) {
+		e.printStackTrace();
+		
+		responseproductupdate.setOkStatus(false);
+		responseproductupdate.setBody(null);
+		responseproductupdate.addError(e.getMessage());
+	}
+	return responseproductupdate;
+}
+
 }
 
 

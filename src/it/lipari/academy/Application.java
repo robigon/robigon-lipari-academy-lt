@@ -56,20 +56,24 @@ public class Application {
 			} else {
 				
 			}
+			
+			
 			ProductController pC = new ProductController(new ProductServiceImpl(new ProductRepository()));
 			BaseResponse<List<ProductDto>> responsepc = pC.esSelectProduct();
 			
 			if(responseac.isOkStatus()) {
-				List<ProductDto> users = responsepc.getBody();
+				List<ProductDto> product = responsepc.getBody();
 				System.out.println("Stampa prodotti:");
-				users.stream().forEach(t -> System.out.println(t));
+				product.stream().forEach(t -> System.out.println(t));
 			} else {
 				
 			}
 			
-			BaseResponse<ProductDto> productResponse = pC.updateProduct( 1 , "3423", "ttttt", 11.1, 6, 4, new Timestamp(System.currentTimeMillis()));
+			BaseResponse<ProductDto> productResponse = pC.updateProduct( 1 , "5555", "ttttt", 11.1, 6, 4, new Timestamp(System.currentTimeMillis()));
 			ProductDto product = productResponse.getBody();
-			
+			BaseResponse<ProductDto> insertproductResponse = pC.insertProduct( 4 , "5555", "ttttt", 11.1, 6, 4, new Timestamp(System.currentTimeMillis()),4, new Timestamp(System.currentTimeMillis()));
+
+						
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
