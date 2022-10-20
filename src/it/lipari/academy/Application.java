@@ -40,7 +40,7 @@ public class Application {
 			BaseResponse<UserDto> userResponse = uC.updateFiscalCode(1, "LòSJNDFòSDNFJK");
 			UserDto user = userResponse.getBody();
 
-			BaseResponse<UserDto> logicalDeleteResponse = uC.logicalDelete(4);
+			BaseResponse<UserDto> logicalDeleteResponse = uC.logicalDelete(5);
 
 			
 			
@@ -71,7 +71,8 @@ public class Application {
 			
 			BaseResponse<ProductDto> productResponse = pC.updateProduct( 1 , "5555", "ttttt", 11.1, 6, 4, new Timestamp(System.currentTimeMillis()));
 			ProductDto product = productResponse.getBody();
-			BaseResponse<ProductDto> insertproductResponse = pC.insertProduct( 4 , "5555", "ttttt", 11.1, 6, 4, new Timestamp(System.currentTimeMillis()),4, new Timestamp(System.currentTimeMillis()));
+			//BaseResponse<ProductDto> insertproductResponse = pC.insertProduct( 4 , "5555", "ttttt", 11.1, 6, 4, new Timestamp(System.currentTimeMillis()),4, new Timestamp(System.currentTimeMillis()));
+			BaseResponse<ProductDto> deleteResponse = pC.deleteProduct(4);
 
 						
 		} catch (Exception e) {

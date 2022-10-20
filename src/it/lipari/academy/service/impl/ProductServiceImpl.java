@@ -4,9 +4,13 @@ import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 
+import it.lipari.academy.exception.DataException;
 import it.lipari.academy.model.dto.ProductDto;
+import it.lipari.academy.model.dto.UserDto;
 import it.lipari.academy.model.vo.Product;
+import it.lipari.academy.model.vo.User;
 import it.lipari.academy.pattern.utils.ProductUtils;
+import it.lipari.academy.pattern.utils.UserUtils;
 import it.lipari.academy.repository.ProductRepository;
 import it.lipari.academy.service.ProductService;
 
@@ -46,8 +50,14 @@ public class ProductServiceImpl implements ProductService{
  
 		return response;
 	}
-
-
+	
+	@Override
+	public ProductDto deleteProduct(Integer id_product) throws Exception {
+		Product product = ProductRepository.deleteProduct(id_product);
+				ProductDto response = ProductUtils.fromVoToDto(product);
+ 
+		return response;
+	}
 }
 	
 

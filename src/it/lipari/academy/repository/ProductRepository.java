@@ -15,6 +15,7 @@ import it.lipari.academy.database.LipariMysqlDatabaseManager;
 import it.lipari.academy.exception.DataException;
 import it.lipari.academy.model.vo.FiltraUtenti;
 import it.lipari.academy.model.vo.Product;
+import it.lipari.academy.model.vo.User;
 
 
 public class ProductRepository {
@@ -169,6 +170,34 @@ public class ProductRepository {
 		}
 		return p;
 	}
+
+
+	public static Product deleteProduct(Integer id_product) throws Exception {
+		Product p = null;
+		
+		Connection conn = null;
+		
+		try {
+			
+			conn= LipariMysqlDatabaseManager.getInstance().openMysqlConnection();
+			conn.setAutoCommit(false);
+					
+		
+		PreparedStatement pstmt = conn.prepareStatement("delete from product where id_product = ?");
+		pstmt.setInt(1, id_product);
+		
+
+		int affectedRows = pstmt.executeUpdate(); 
+		if (affectedRows != 1) {
+			conn.rollback();
+			throw new DataException("Utente non trovato con id: " + id_product);
+		}
+		conn.commit();
+	} catch (SQLException e) {
+		throw new DataException("Errore durante la connessione al database", e);
+	}
+	return new Product();
+}
 }
 	
 	

@@ -17,6 +17,8 @@ public interface ProductService {
 			Integer create_user, Timestamp create_time, Integer last_update_user, Timestamp last_update_time)
 			throws Exception;
 
+	ProductDto deleteProduct(Integer id_product) throws Exception;
+
 
 	
 }

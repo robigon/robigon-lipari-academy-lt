@@ -81,6 +81,26 @@ public BaseResponse<ProductDto> insertProduct(Integer id_product, String code, S
 	return responseproductupdate;
 }
 
+
+public BaseResponse<ProductDto> deleteProduct(Integer id_product) {
+	
+	BaseResponse<ProductDto> responseproductupdate = new BaseResponse<>();
+	
+ 	try {
+		ProductDto dto = productService.deleteProduct(id_product);
+		responseproductupdate.setOkStatus(true);
+		responseproductupdate.setBody(dto);
+		
+	} catch (Exception e) {
+		e.printStackTrace();
+		
+		responseproductupdate.setOkStatus(false);
+		responseproductupdate.setBody(null);
+		responseproductupdate.addError(e.getMessage());
+	}
+	return responseproductupdate;
+}
+
 }
 
 
